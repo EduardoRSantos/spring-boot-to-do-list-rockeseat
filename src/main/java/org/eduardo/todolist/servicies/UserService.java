@@ -21,8 +21,13 @@ public class UserService {
         if(user != null){
             throw new UserExistException("Esse usuario ja exis", user.getId());
         }
-       var passowordHash = BCrypt.withDefaults().hashToString(12, usercreated.getPassword().toCharArray());
+       var passowordHash =  BCrypt.withDefaults()
+       .hashToString(12, usercreated
+       .getPassword()
+       .toCharArray());
+
        usercreated.setPassword(passowordHash);
+       
         return userRepository.save(usercreated);
     }
 
