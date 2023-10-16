@@ -2,7 +2,7 @@ package org.eduardo.todolist.servicies;
 
 import org.eduardo.todolist.models.UserModel;
 import org.eduardo.todolist.repositories.UserRepository;
-import org.eduardo.todolist.servicies.exceptions.UserExistException;
+import org.eduardo.todolist.servicies.exceptions.ExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class UserService {
     public UserModel create(UserModel usercreated){
         var user = userRepository.findByUsername(usercreated.getUsername());
         if(user != null){
-            throw new UserExistException("Esse " + user.getId() + " ja existe");
+            throw new ExistException("Esse " + user.getId() + " ja existe");
         }
        var passowordHash =  BCrypt.withDefaults()
        .hashToString(12, usercreated

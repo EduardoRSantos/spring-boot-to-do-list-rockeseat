@@ -1,5 +1,6 @@
 package org.eduardo.todolist.models;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ import lombok.Data;
  */
 @Data
 @Entity(name = "tb_users")
-public class UserModel {
+public class UserModel implements Serializable {
     
     @Id
     @GeneratedValue(generator = "UUID")
