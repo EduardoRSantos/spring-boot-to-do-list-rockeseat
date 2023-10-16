@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/users")
-public class UserControler {
+public class UserController {
 
     @Autowired
     private UserService userService;
 
     @PostMapping("/")
     public ResponseEntity<UserModel> create(@RequestBody UserModel userModel){
-        var user = userService.saveUser(userModel);
+        var user = userService.create(userModel);
         return ResponseEntity.ok().body(user);
     }
     

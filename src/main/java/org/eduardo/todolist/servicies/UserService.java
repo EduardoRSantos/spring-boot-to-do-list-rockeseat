@@ -16,10 +16,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserModel saveUser(UserModel usercreated){
+    public UserModel create(UserModel usercreated){
         var user = userRepository.findByUsername(usercreated.getUsername());
         if(user != null){
-            throw new UserExistException("Esse usuario ja exis", user.getId());
+            throw new UserExistException("Esse " + user.getId() + " ja existe");
         }
        var passowordHash =  BCrypt.withDefaults()
        .hashToString(12, usercreated
